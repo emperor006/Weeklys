@@ -15,9 +15,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.weekls.events.RewardEvents
+import com.app.weekls.state.RewardState
 
 @Composable
-fun Scoreboard() {
+fun Scoreboard(
+    state: RewardState,
+    onEvent: (RewardEvents)-> Unit
+) {
     return Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -51,7 +56,7 @@ fun Scoreboard() {
             ) {
                 Text(text = "Score: ", style = TextStyle(color = Color.White, fontSize = 20.sp))
                 Text(
-                    text = "£0",
+                    text = "£ ${state.balance}",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         color = Color.White,

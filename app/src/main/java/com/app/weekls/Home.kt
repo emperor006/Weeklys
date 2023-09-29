@@ -19,10 +19,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.weekls.events.RewardEvents
+import com.app.weekls.state.RewardState
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Home() {
+fun Home(
+    state: RewardState,
+    onEvent: (RewardEvents)-> Unit
+) {
 
     return Column(
         modifier = Modifier
@@ -31,7 +36,7 @@ fun Home() {
             .background(color = Color(0xFF1A1824))
             .padding(20.dp),
     ) {
-        Scoreboard()
+        Scoreboard(state, onEvent)
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -55,7 +60,11 @@ fun Home() {
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            //onEvent(RewardEvents.SetNewBalance(1))
+                            onEvent(RewardEvents.ManipulateBalance(1))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -210,7 +219,7 @@ fun Home() {
             ListItem(
                 text = {
                     Text(
-                        text = "Divide and assign task for others to do instead of doing it alone",
+                        text = "Divide and assign task to others instead of doing it alone",
                         style = TextStyle(color = Color.White)
                     )
                 },
@@ -339,8 +348,8 @@ fun Home() {
             Spacer(modifier = Modifier.height(20.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { /*TODO remove everything he has ever scored
-    */
+                onClick = {
+                /*TODO remove everything he has ever scored */
 
                 }) {
                 Text(text = "Missed a day")
