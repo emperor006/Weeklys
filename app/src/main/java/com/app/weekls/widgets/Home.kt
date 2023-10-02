@@ -97,7 +97,7 @@ fun Home(
             ListItem(
                 text = {
                     Text(
-                        text = "Completing calendar work today",
+                        text = "Completing all calendar work today",
                         style = TextStyle(color = Color.White)
                     )
                 },
