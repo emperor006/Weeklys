@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
@@ -26,7 +27,7 @@ import com.app.weekls.state.RewardState
 @Composable
 fun Home(
     state: RewardState,
-    onEvent: (RewardEvents)-> Unit
+    onEvent: (RewardEvents) -> Unit
 ) {
 
     return Column(
@@ -37,17 +38,20 @@ fun Home(
             .padding(20.dp),
     ) {
         Scoreboard(state, onEvent)
+
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             text = "Task",
             style = TextStyle(
-                color = Color.White, fontWeight = FontWeight.Bold, fontSize = 20.sp
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp
             )
         )
-        Spacer(modifier = Modifier.height(20.dp))
 
+        Spacer(modifier = Modifier.height(20.dp))
 
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
@@ -61,8 +65,9 @@ fun Home(
                 trailing = {
                     Row() {
                         Button(onClick = {
-                            //onEvent(RewardEvents.SetNewBalance(1))
-                            onEvent(RewardEvents.ManipulateBalance(1))
+                            val amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
 
                         }) {
                             Text(
@@ -73,18 +78,21 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            val amount= if(state.money.size==1) state.money[0].amount - 3 else -3
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
                             )
-
                         }
-
                     }
-
                 }
             )
+
             Spacer(modifier = Modifier.height(14.dp))
             ListItem(
                 text = {
@@ -95,7 +103,13 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }
+                        ) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -104,16 +118,18 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
                             )
-
                         }
-
                     }
-
                 }
             )
             Spacer(modifier = Modifier.height(14.dp))
@@ -127,16 +143,25 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
                             )
                         }
-
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 2 else -2
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -159,7 +184,14 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -168,7 +200,11 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 2 else -2
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -192,7 +228,12 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 2 else 2
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -201,16 +242,18 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
                             )
-
                         }
-
                     }
-
                 }
             )
 
@@ -225,7 +268,12 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -234,7 +282,12 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 1 else -2
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -259,7 +312,13 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 2 else 2
+
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -268,16 +327,19 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
+
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
                             )
-
                         }
-
                     }
-
                 }
             )
 
@@ -292,7 +354,12 @@ fun Home(
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -301,7 +368,13 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 1 else -1
+
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -317,13 +390,19 @@ fun Home(
             ListItem(
                 text = {
                     Text(
-                        text = "Hurt or offend others to satisfy any desire I have",
+                        text = "Take a decision that favours me even though it hurts or inconveniences others",
                         style = TextStyle(color = Color.White)
                     )
                 },
                 trailing = {
                     Row() {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount + 3 else 3
+
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "+",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -332,7 +411,12 @@ fun Home(
 
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(onClick = {
+                            var amount= if(state.money.size==1) state.money[0].amount - 1 else 0
+                            onEvent(RewardEvents.SetNewBalance(amount))
+                            onEvent(RewardEvents.ManipulateBalance(amount))
+
+                        }) {
                             Text(
                                 text = "-",
                                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -349,7 +433,8 @@ fun Home(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                /*TODO remove everything he has ever scored */
+                    onEvent(RewardEvents.SetNewBalance(0))
+                    onEvent(RewardEvents.ManipulateBalance(0))
 
                 }) {
                 Text(text = "Missed a day")
@@ -360,14 +445,5 @@ fun Home(
 
 
     }
-
-}
-
-fun subtractScore(score: Any): Unit {
-
-
-}
-
-fun missedAday():Unit{
 
 }

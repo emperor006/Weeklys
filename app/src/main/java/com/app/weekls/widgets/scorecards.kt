@@ -1,5 +1,6 @@
 package com.app.weekls
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -56,7 +57,7 @@ fun Scoreboard(
             ) {
                 Text(text = "Score: ", style = TextStyle(color = Color.White, fontSize = 20.sp))
                 Text(
-                    text = "£ ${state.balance}",
+                    text = "£ ${if(state.money.size == 1) state.money[0].amount else 0 }",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
