@@ -60,6 +60,10 @@ fun Home(
             Spacer(modifier = Modifier.height(14.dp))
 
             Tasks(state = state, title = "Completing all calendar work today", add = 1, subtract = 3, onEvent =onEvent)
+            Spacer(modifier = Modifier.height(14.dp))
+
+            Tasks(state = state, title = "Missed a calendar activity", add = 0, subtract = 3, onEvent =onEvent)
+
 
             Spacer(modifier = Modifier.height(14.dp))
 
