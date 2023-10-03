@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.weekls.events.RewardEvents
 import com.app.weekls.state.RewardState
+import com.app.weekls.widgets.Tasks
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -39,7 +40,7 @@ fun Home(
     ) {
         Scoreboard(state, onEvent)
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(15.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
@@ -51,385 +52,56 @@ fun Home(
             )
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-
-            ListItem(
-                text = {
-                    Text(
-                        text = "It has to be my way or no other way",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            val amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            val amount= if(state.money.size==1) state.money[0].amount - 3 else -3
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-                    }
-                }
-            )
-
-            Spacer(modifier = Modifier.height(14.dp))
-            ListItem(
-                text = {
-                    Text(
-                        text = "Completing all calendar work today",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }
-                        ) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-                    }
-                }
-            )
-            Spacer(modifier = Modifier.height(14.dp))
-
-            ListItem(
-                text = {
-                    Text(
-                        text = "Goofy laughing or Joke",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 2 else -2
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-
-                        }
-
-                    }
-
-                }
-            )
-            Spacer(modifier = Modifier.height(14.dp))
-
-            ListItem(
-                text = {
-                    Text(
-                        text = "Putting someone in their place",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 2 else -2
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-
-                        }
-
-                    }
-
-                }
-            )
+            Tasks(state = state, title = "It has to be my way or no other way", add = 1, subtract = 3, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            ListItem(
-                text = {
-                    Text(
-                        text = "Masculine Frame and Voice",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 2 else 2
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-                    }
-                }
-            )
+            Tasks(state = state, title = "Completing all calendar work today", add = 1, subtract = 3, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            ListItem(
-                text = {
-                    Text(
-                        text = "Divide and assign task to others instead of doing it alone",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 1 else -2
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-
-                        }
-
-                    }
-
-                }
-            )
+            Tasks(state = state, title = "Goofy laughing or Joke", add = 1, subtract = 2, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
-
-            ListItem(
-                text = {
-                    Text(
-                        text = "No Youtube or social media",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 2 else 2
-
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 3 else -3
-
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-                    }
-                }
-            )
+            Tasks(state = state, title = "Putting someone in their place", add = 1, subtract = 2, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            ListItem(
-                text = {
-                    Text(
-                        text = "Did something scary",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 1 else 1
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
+            Tasks(state = state, title = "Masculine Frame and Voice", add = 2, subtract = 3, onEvent =onEvent)
 
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(20.dp))
-
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 1 else -1
-
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
-
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-
-                        }
-
-                    }
-
-                }
-            )
             Spacer(modifier = Modifier.height(14.dp))
-            ListItem(
-                text = {
-                    Text(
-                        text = "Take a decision that favours me even though it hurts or inconveniences others",
-                        style = TextStyle(color = Color.White)
-                    )
-                },
-                trailing = {
-                    Row() {
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount + 3 else 3
 
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
+            Tasks(state = state, title = "Divide and assign task to others instead of doing it alone", add = 1, subtract = 2, onEvent =onEvent)
 
-                        }) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
-                        }
+            Spacer(modifier = Modifier.height(14.dp))
+            Tasks(state = state, title = "No Youtube or social media", add = 0, subtract = 3, onEvent =onEvent)
 
-                        Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.height(14.dp))
+            Tasks(state = state, title = "Did something scary", add = 1, subtract = 3, onEvent =onEvent)
 
-                        Button(onClick = {
-                            var amount= if(state.money.size==1) state.money[0].amount - 1 else 0
-                            onEvent(RewardEvents.SetNewBalance(amount))
-                            onEvent(RewardEvents.ManipulateBalance(amount))
+            Spacer(modifier = Modifier.height(14.dp))
 
-                        }) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            )
+            Tasks(state = state, title = "Take a decision that favours me even though it hurts or inconveniences others", add = 3, subtract = 0, onEvent =onEvent)
 
-                        }
+            Spacer(modifier = Modifier.height(14.dp))
 
-                    }
+            Tasks(state = state, title = "Criticizing or advising others when they didn't ask for it", add = 2, subtract = 3, onEvent =onEvent)
 
-                }
-            )
+            Spacer(modifier = Modifier.height(14.dp))
+
+            Tasks(state = state, title = "Simping and borrowing others", add = 0, subtract = 4, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(20.dp))
+
+            Tasks(state = state, title = "Talkative", add = 1, subtract = 2, onEvent =onEvent)
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
