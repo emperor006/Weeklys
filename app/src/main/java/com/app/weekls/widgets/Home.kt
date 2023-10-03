@@ -89,7 +89,7 @@ fun Home(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            Tasks(state = state, title = "Take a decision that favours me even though it hurts or inconveniences others", add = 3, subtract = 3, onEvent =onEvent)
+            Tasks(state = state, title = "Take a decision that favours me even though it hurts or inconveniences others. Better if it makes others see me as a bad person", add = 3, subtract = 3, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
@@ -109,8 +109,10 @@ fun Home(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    onEvent(RewardEvents.SetNewBalance(0))
-                    onEvent(RewardEvents.ManipulateBalance(0))
+                    var amount= if(state.money.size==1) state.money[0].amount - 20 else 0
+
+                    onEvent(RewardEvents.SetNewBalance(amount))
+                    onEvent(RewardEvents.ManipulateBalance(amount))
 
                 }) {
                 Text(text = "Missed a day")
