@@ -89,7 +89,7 @@ fun Home(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            Tasks(state = state, title = "Take a decision that favours me even though it hurts or inconveniences others", add = 3, subtract = 0, onEvent =onEvent)
+            Tasks(state = state, title = "Take a decision that favours me even though it hurts or inconveniences others", add = 3, subtract = 3, onEvent =onEvent)
 
             Spacer(modifier = Modifier.height(14.dp))
 
